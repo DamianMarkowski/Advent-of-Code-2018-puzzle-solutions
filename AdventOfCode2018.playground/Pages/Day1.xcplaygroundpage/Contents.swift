@@ -1,4 +1,5 @@
 import Foundation
+import XCTest
 
 // PUZZLE 1
 
@@ -18,18 +19,30 @@ func getNumbers(dataFileName: String) -> [Int] {
     return lines.compactMap { Int($0) }
 }
 
-let sum1 = calculateSum(dataFileName: "puzzle1-test-data1")
-print(sum1)
+let sum = calculateSum(dataFileName: "day1-input-data")
+print(sum)
 
-let sum2 = calculateSum(dataFileName: "puzzle1-test-data2")
-print(sum2)
 
-let sum3 = calculateSum(dataFileName: "puzzle1-test-data3")
-print(sum3)
+class Puzzle1Tests: XCTestCase {
+    
+    func test_calculateSum_shouldReturn3_whenFirstTestDataPassed() {
+        XCTAssertEqual(calculateSum(dataFileName: "puzzle1-test-data1"), 3)
+    }
+    
+    func test_calculateSum_shouldReturn0_whenSecondTestDataPassed() {
+        XCTAssertEqual(calculateSum(dataFileName: "puzzle1-test-data2"), 0)
+    }
+    
+    func test_calculateSum_shouldReturnMinus6_whenThirdTestDataPassed() {
+        XCTAssertEqual(calculateSum(dataFileName: "puzzle1-test-data3"), -6)
+    }
+    
+    func test_calculateSum_shouldReturn402_whenMainTestDataPassed() {
+        XCTAssertEqual(calculateSum(dataFileName: "day1-input-data"), 402)
+    }
+}
 
-let sum4 = calculateSum(dataFileName: "day1-input-data")
-print(sum4)
-
+Puzzle1Tests.defaultTestSuite.run()
 
 // PUZZLE 2
 
@@ -60,17 +73,30 @@ func findFirstFrequencyReachedTwice(dataFileName: String) -> Int? {
     return firstFrequencyReachedTwice
 }
 
-let frequency1 = findFirstFrequencyReachedTwice(dataFileName: "puzzle2-test-data1")
-print(String(describing: frequency1))
+let frequency = findFirstFrequencyReachedTwice(dataFileName: "day1-input-data")
+print(String(describing: frequency))
 
-let frequency2 = findFirstFrequencyReachedTwice(dataFileName: "puzzle2-test-data2")
-print(String(describing: frequency2))
+class Puzzle2Tests: XCTestCase {
+    
+    func test_findFirstFrequencyReachedTwice_shouldReturn0_whenFirstTestDataPassed() {
+        XCTAssertEqual(findFirstFrequencyReachedTwice(dataFileName: "puzzle2-test-data1"), 0)
+    }
+    
+    func test_findFirstFrequencyReachedTwice_shouldReturn10_whenSecondTestDataPassed() {
+        XCTAssertEqual(10, findFirstFrequencyReachedTwice(dataFileName: "puzzle2-test-data2"))
+    }
+    
+    func test_findFirstFrequencyReachedTwice_shouldReturn5_whenThirdTestDataPassed() {
+        XCTAssertEqual(findFirstFrequencyReachedTwice(dataFileName: "puzzle2-test-data3"), 5)
+    }
+    
+    func test_findFirstFrequencyReachedTwice_shouldReturn14_whenFourthTestDataPassed() {
+        XCTAssertEqual(findFirstFrequencyReachedTwice(dataFileName: "puzzle2-test-data4"), 14)
+    }
+    
+    func test_findFirstFrequencyReachedTwice_shouldReturn481_whenMainTestDataPassed() {
+        XCTAssertEqual(findFirstFrequencyReachedTwice(dataFileName: "day1-input-data"), 481)
+    }
+}
 
-let frequency3 = findFirstFrequencyReachedTwice(dataFileName: "puzzle2-test-data3")
-print(String(describing: frequency3))
-
-let frequency4 = findFirstFrequencyReachedTwice(dataFileName: "puzzle2-test-data4")
-print(String(describing: frequency4))
-
-let frequency5 = findFirstFrequencyReachedTwice(dataFileName: "day1-input-data")
-print(String(describing: frequency5))
+Puzzle2Tests.defaultTestSuite.run()
