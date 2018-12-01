@@ -1,1 +1,1 @@
-# Advent of Code-2018 - puzzle solutions
+# Advent of Code 2018 - puzzle solutions
