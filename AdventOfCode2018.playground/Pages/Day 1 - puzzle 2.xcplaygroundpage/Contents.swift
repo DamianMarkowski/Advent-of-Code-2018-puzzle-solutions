@@ -1,35 +1,6 @@
 import Foundation
 import XCTest
 
-// PUZZLE 1
-
-let sum = DataReader.calculateSum(dataFileName: "day1-input-data")
-print(sum)
-
-
-class Puzzle1Tests: XCTestCase {
-    
-    func test_calculateSum_shouldReturn3_whenFirstTestDataPassed() {
-        XCTAssertEqual(DataReader.calculateSum(dataFileName: "puzzle1-test-data1"), 3)
-    }
-    
-    func test_calculateSum_shouldReturn0_whenSecondTestDataPassed() {
-        XCTAssertEqual(DataReader.calculateSum(dataFileName: "puzzle1-test-data2"), 0)
-    }
-    
-    func test_calculateSum_shouldReturnMinus6_whenThirdTestDataPassed() {
-        XCTAssertEqual(DataReader.calculateSum(dataFileName: "puzzle1-test-data3"), -6)
-    }
-    
-    func test_calculateSum_shouldReturn402_whenMainTestDataPassed() {
-        XCTAssertEqual(DataReader.calculateSum(dataFileName: "day1-input-data"), 402)
-    }
-}
-
-Puzzle1Tests.defaultTestSuite.run()
-
-// PUZZLE 2
-
 func findFirstFrequencyReachedTwice(dataFileName: String) -> Int? {
     var firstFrequencyReachedTwice: Int?
     var alreadyPerformedNumbers = Set<Int>()

@@ -2,10 +2,6 @@ import Foundation
 
 public class DataReader {
     
-    public class func calculateSum(dataFileName: String) -> Int {
-        return getNumbers(dataFileName: dataFileName).reduce(0, +)
-    }
-    
     public class func getNumbers(dataFileName: String) -> [Int] {
         guard let fileContent = readDataFromFile(dataFileName: dataFileName) else { return [] }
         let lines = fileContent.components(separatedBy: .newlines)
