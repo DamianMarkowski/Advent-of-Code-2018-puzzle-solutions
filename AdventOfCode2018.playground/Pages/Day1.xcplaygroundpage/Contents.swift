@@ -3,42 +3,26 @@ import XCTest
 
 // PUZZLE 1
 
-func calculateSum(dataFileName: String) -> Int {
-    return getNumbers(dataFileName: dataFileName).reduce(0, +)
-}
-
-func readDataFromFile(dataFileName: String) -> String? {
-    guard let fileUrl = Bundle.main.url(forResource: dataFileName, withExtension: "txt"),
-        let fileContent = try? String(contentsOf: fileUrl, encoding: .utf8) else { return nil }
-    return fileContent
-}
-
-func getNumbers(dataFileName: String) -> [Int] {
-    guard let fileContent = readDataFromFile(dataFileName: dataFileName) else { return [] }
-    let lines = fileContent.components(separatedBy: .newlines)
-    return lines.compactMap { Int($0) }
-}
-
-let sum = calculateSum(dataFileName: "day1-input-data")
+let sum = DataReader.calculateSum(dataFileName: "day1-input-data")
 print(sum)
 
 
 class Puzzle1Tests: XCTestCase {
     
     func test_calculateSum_shouldReturn3_whenFirstTestDataPassed() {
-        XCTAssertEqual(calculateSum(dataFileName: "puzzle1-test-data1"), 3)
+        XCTAssertEqual(DataReader.calculateSum(dataFileName: "puzzle1-test-data1"), 3)
     }
     
     func test_calculateSum_shouldReturn0_whenSecondTestDataPassed() {
-        XCTAssertEqual(calculateSum(dataFileName: "puzzle1-test-data2"), 0)
+        XCTAssertEqual(DataReader.calculateSum(dataFileName: "puzzle1-test-data2"), 0)
     }
     
     func test_calculateSum_shouldReturnMinus6_whenThirdTestDataPassed() {
-        XCTAssertEqual(calculateSum(dataFileName: "puzzle1-test-data3"), -6)
+        XCTAssertEqual(DataReader.calculateSum(dataFileName: "puzzle1-test-data3"), -6)
     }
     
     func test_calculateSum_shouldReturn402_whenMainTestDataPassed() {
-        XCTAssertEqual(calculateSum(dataFileName: "day1-input-data"), 402)
+        XCTAssertEqual(DataReader.calculateSum(dataFileName: "day1-input-data"), 402)
     }
 }
 
@@ -52,7 +36,7 @@ func findFirstFrequencyReachedTwice(dataFileName: String) -> Int? {
     var currentFrequency = 0
     var frequencies = Set([currentFrequency])
     var numberToBreak: Int?
-    let numbers = getNumbers(dataFileName: dataFileName)
+    let numbers = DataReader.getNumbers(dataFileName: dataFileName)
     while firstFrequencyReachedTwice == nil {
         for number in numbers {
             if numberToBreak == nil {
