@@ -35,9 +35,9 @@ print(sum4)
 
 func findFirstFrequencyReachedTwice(dataFileName: String) -> Int? {
     var firstFrequencyReachedTwice: Int?
-    var alreadyPerformedNumbers: [Int] = []
+    var alreadyPerformedNumbers = Set<Int>()
     var currentFrequency = 0
-    var frequencies: [Int] = [currentFrequency]
+    var frequencies = Set([currentFrequency])
     var numberToBreak: Int?
     let numbers = getNumbers(dataFileName: dataFileName)
     while firstFrequencyReachedTwice == nil {
@@ -47,15 +47,13 @@ func findFirstFrequencyReachedTwice(dataFileName: String) -> Int? {
                     numberToBreak = number
                 }
             }
-            if !alreadyPerformedNumbers.contains(number) {
-                alreadyPerformedNumbers.append(number)
-            }
+            alreadyPerformedNumbers.insert(number)
             currentFrequency += number
             if frequencies.contains(currentFrequency) {
                 firstFrequencyReachedTwice = currentFrequency
                 break
             } else {
-                frequencies.append(currentFrequency)
+                frequencies.insert(currentFrequency)
             }
         }
     }
