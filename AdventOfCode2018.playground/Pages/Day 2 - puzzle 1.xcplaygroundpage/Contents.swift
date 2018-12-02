@@ -12,21 +12,29 @@ func calculateChecksum(dataFileName: String) -> Int {
         for character in line {
             let count = line.count(of: character)
             if count == 2 {
-                if characterSavedForDoubleRepetition == nil {
-                    numberOfLinesWithDoubleRepetition += 1
-                    characterSavedForDoubleRepetition = character
-                }
+                handleCount2(with: character, characterSavedForDoubleRepetition: &characterSavedForDoubleRepetition, numberOfLinesWithDoubleRepetition: &numberOfLinesWithDoubleRepetition)
             }
             if count == 3 {
-                if characterSavedForTripleRepetition == nil {
-                    numberOfLinesWithTripleRepetition += 1
-                    characterSavedForTripleRepetition = character
-                }
+                handleCount3(with: character, characterSavedForTripleRepetition: &characterSavedForTripleRepetition, numberOfLinesWithTripleRepetition: &numberOfLinesWithTripleRepetition)
             }
         }
     }
    
     return numberOfLinesWithDoubleRepetition * numberOfLinesWithTripleRepetition
+}
+
+private func handleCount2(with character: Character, characterSavedForDoubleRepetition: inout Character?, numberOfLinesWithDoubleRepetition: inout Int) {
+    if characterSavedForDoubleRepetition == nil {
+        numberOfLinesWithDoubleRepetition += 1
+        characterSavedForDoubleRepetition = character
+    }
+}
+
+private func handleCount3(with character: Character, characterSavedForTripleRepetition: inout Character?, numberOfLinesWithTripleRepetition: inout Int) {
+    if characterSavedForTripleRepetition == nil {
+        numberOfLinesWithTripleRepetition += 1
+        characterSavedForTripleRepetition = character
+    }
 }
 
 extension String {
