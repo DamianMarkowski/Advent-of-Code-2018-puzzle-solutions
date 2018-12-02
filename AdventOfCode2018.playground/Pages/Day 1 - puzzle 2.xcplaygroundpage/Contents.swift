@@ -10,11 +10,7 @@ func findFirstFrequencyReachedTwice(dataFileName: String) -> Int? {
     let numbers = DataReader.getNumbers(dataFileName: dataFileName)
     while firstFrequencyReachedTwice == nil {
         for number in numbers {
-            if numberToBreak == nil {
-                if alreadyPerformedNumbers.contains(number) {
-                    numberToBreak = number
-                }
-            }
+            populateNumberToBreak(with: number, numberToBreak: &numberToBreak, alreadyPerformedNumbers: alreadyPerformedNumbers)
             alreadyPerformedNumbers.insert(number)
             currentFrequency += number
             if frequencies.contains(currentFrequency) {
@@ -26,6 +22,14 @@ func findFirstFrequencyReachedTwice(dataFileName: String) -> Int? {
         }
     }
     return firstFrequencyReachedTwice
+}
+
+private func populateNumberToBreak(with number: Int, numberToBreak: inout Int?, alreadyPerformedNumbers: Set<Int>) {
+    if numberToBreak == nil {
+        if alreadyPerformedNumbers.contains(number) {
+            numberToBreak = number
+        }
+    }
 }
 
 let frequency = findFirstFrequencyReachedTwice(dataFileName: "day1-input-data")
