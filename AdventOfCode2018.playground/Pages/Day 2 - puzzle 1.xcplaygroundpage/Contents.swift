@@ -36,5 +36,5 @@ extension String {
     }
 }
 
-let checkSum = calculateCheckSum(dataFileName: "day2-puzzle1-input-data")
+let checkSum = calculateCheckSum(dataFileName: "day2-input-data")
 print(checkSum)
