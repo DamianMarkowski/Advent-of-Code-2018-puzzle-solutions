@@ -1,6 +1,7 @@
 import Foundation
+import XCTest
 
-func calculateCheckSum(dataFileName: String) -> Int {
+func calculateChecksum(dataFileName: String) -> Int {
     guard let fileContent = DataReader.readDataFromFile(dataFileName: dataFileName) else { return 0 }
     let lines = DataReader.splitDataFromFileIntoLines(fileContent: fileContent)
     var numberOfLinesWithDoubleRepetition = 0
@@ -36,5 +37,18 @@ extension String {
     }
 }
 
-let checkSum = calculateCheckSum(dataFileName: "day2-input-data")
-print(checkSum)
+let checksum = calculateChecksum(dataFileName: "day2-input-data")
+print(checksum)
+
+class Puzzle1Tests: XCTestCase {
+    
+    func test_calculateChecksum_shouldReturn12_whenFirstTestDataPassed() {
+        XCTAssertEqual(calculateChecksum(dataFileName: "day2-puzzle1-test-data"), 12)
+    }
+    
+    func test_calculateChecksum_shouldReturn4980_whenMainTestDataPassed() {
+        XCTAssertEqual(calculateChecksum(dataFileName: "day2-input-data"), 4980)
+    }
+}
+
+Puzzle1Tests.defaultTestSuite.run()
